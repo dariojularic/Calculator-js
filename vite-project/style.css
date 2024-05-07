@@ -1,19 +1,61 @@
+html {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .container {
-    /* width: 560px;
-    height: 640px; */
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  height: 560px;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  flex-direction: column;
+  padding: 24px;
+  background-color: gray;
+  border-radius: 8px;
+
 }
 
 
 .buttons {
+  width: 320px;
+  height: 400px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(5, 1fr);
   gap: 8px;
+  font-size: 32px;
+}
 
+.display {
+  background-color: white;
+  width: 100%;
+  margin-bottom: 24px;
+  border-radius: 8px;
+  flex-grow: 1;
+}
 
+.primary-output {
+  height: 50%;
+  background-color: red;
+  border-radius: 8px;
+  text-align: end;
+  font-size: 32px;
+}
+
+.secondary-output {
+  font-size: 24px;
+  height: 50%;
+  text-align: end;
+  /* kako napravit boreder radius na 2 od 4 kuta */
+  background-color: blueviolet;
+  border-radius: 8px;
+}
+
+button {
+  font-size: 24px;
+  border-radius: 8px;
+  cursor: pointer;
 }
 
 .clear {
