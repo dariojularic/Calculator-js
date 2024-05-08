@@ -2,9 +2,12 @@ html {
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
 }
 
 .container {
+  width: 360px;
   height: 560px;
   display: flex;
   justify-content: center;
@@ -18,7 +21,7 @@ html {
 
 
 .buttons {
-  width: 320px;
+  width: 100%;
   height: 400px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -37,10 +40,14 @@ html {
 
 .primary-output {
   height: 50%;
-  background-color: red;
+  /* background-color: red; */
   border-radius: 8px;
   text-align: end;
-  font-size: 32px;
+  font-size: 40px;
+  font-weight: 600;
+  /* display: flex;
+  justify-content: end; */
+  align-items: end;
 }
 
 .secondary-output {
@@ -48,7 +55,7 @@ html {
   height: 50%;
   text-align: end;
   /* kako napravit boreder radius na 2 od 4 kuta */
-  background-color: blueviolet;
+  /* background-color: blueviolet; */
   border-radius: 8px;
 }
 
