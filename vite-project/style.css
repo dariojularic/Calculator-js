@@ -40,7 +40,7 @@ html {
 
 .primary-output {
   height: 50%;
-  background-color: red;
+  /* background-color: red; */
   border-radius: 8px;
   text-align: end;
   font-size: 40px;
@@ -55,7 +55,7 @@ html {
   height: 50%;
   text-align: end;
   /* kako napravit boreder radius na 2 od 4 kuta */
-  background-color: blueviolet;
+  /* background-color: blueviolet; */
   border-radius: 8px;
 }
 
