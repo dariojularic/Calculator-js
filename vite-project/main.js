@@ -60,3 +60,8 @@ buttons.addEventListener("click", (event) => {
   }
 })
 
+// dotBtn.addEventListener("click", (event) => {
+//   if (!event.target.value in calculator.getFirstNumber() && calculator.getFirstNumber() !== "") {
+//     calculator.setFirstNumber(event.target.value)
+//   }
+// })
