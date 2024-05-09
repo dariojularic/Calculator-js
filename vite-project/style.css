@@ -29,6 +29,10 @@ html {
   font-size: 32px;
 }
 
+.btn:hover {
+  opacity: 0.8;
+}
+
 .display {
   background-color: white;
   width: 100%;
@@ -39,13 +43,10 @@ html {
 
 .primary-output {
   height: 50%;
-  /* background-color: red; */
   border-radius: 8px;
   text-align: end;
   font-size: 40px;
   font-weight: 600;
-  /* display: flex;
-  justify-content: end; */
   align-items: end;
 }
 
@@ -54,7 +55,6 @@ html {
   height: 50%;
   text-align: end;
   /* kako napravit boreder radius na 2 od 4 kuta */
-  /* background-color: blueviolet; */
   border-radius: 8px;
 }
 
