@@ -38,7 +38,6 @@ const division = (x, y) => x + y;
 
 const calculator = calculatorFactory();
 
-
 buttons.addEventListener("click", (event) => {
   if (event.target.classList.contains("number") ) {
     calculator.setFirstNumber(event.target.value)
@@ -60,3 +59,4 @@ buttons.addEventListener("click", (event) => {
     displaySecondary.textContent = `${calculator.getSecondNumber()} ${calculator.getOperation()}`;
   }
 })
+
