@@ -18,16 +18,16 @@ function calculatorFactory() {
 
   const getFirstNumber = () => firstNumber;
   const setFirstNumber = (firstNum) => firstNumber += firstNum;
-  const resetFirstNumber = () => firstNumber = "";
+  const resetNumberOne = () => firstNumber = "";
 
   const getSecondNumber = () => secondNumber;
   const setSecondNumber = (secondNum) => secondNumber += secondNum;
-  const resetSecondNumber = () => secondNumber = "";
+  const resetNumberTwo = () => secondNumber = "";
 
   const getOperation = () => operation;
   const setOperation = (mathOperation) => operation = mathOperation;
 
-  return {getFirstNumber, setFirstNumber, resetFirstNumber, getSecondNumber, setSecondNumber, getOperation, setOperation}
+  return {getFirstNumber, setFirstNumber, resetNumberOne, getSecondNumber, setSecondNumber, resetNumberTwo, getOperation, setOperation}
   // const setResult = (result, operation, number) => result, operation, number
 }
 
@@ -40,21 +40,23 @@ const calculator = calculatorFactory();
 
 
 buttons.addEventListener("click", (event) => {
-  if (event.target.classList.contains("number")) {
+  if (event.target.classList.contains("number") ) {
     calculator.setFirstNumber(event.target.value)
     displayPrimary.textContent = "";
     displayPrimary.textContent += calculator.getFirstNumber();
-  }
-
-  if (event.target.classList.contains("operation") && calculator.getFirstNumber() !== "" && calculator.getSecondNumber() === "") {
+  } else if (event.target.classList.contains("operation") && calculator.getFirstNumber() !== "" && calculator.getSecondNumber() === "") {
     calculator.setSecondNumber(calculator.getFirstNumber());
-    calculator.resetFirstNumber();
+    calculator.resetNumberOne();
     calculator.setOperation(event.target.value)
     displayPrimary.textContent = "";
     displaySecondary.textContent = `${calculator.getSecondNumber()} ${calculator.getOperation()}`;
-  }
-
-  if (event.target.classList.contains("operation") && calculator.getSecondNumber() !== "" && calculator.getFirstNumber() !== "") {
-
+  } else if (event.target.classList.contains("operation") && calculator.getSecondNumber() !== "" && calculator.getFirstNumber() !== "") {
+    const result = (eval(`${parseInt(calculator.getSecondNumber())} ${calculator.getOperation()} ${parseInt(calculator.getFirstNumber())}`));
+    calculator.resetNumberTwo()
+    calculator.setSecondNumber(result);
+    calculator.resetNumberOne()
+    calculator.setOperation(event.target.value)
+    displayPrimary.textContent = "";
+    displaySecondary.textContent = `${calculator.getSecondNumber()} ${calculator.getOperation()}`;
   }
 })
