@@ -1,12 +1,10 @@
 import './style.css'
 
-const buttons = document.querySelector(".buttons")
-const numberButtons = document.querySelectorAll(".number");
-const clearBtn = document.querySelector(".clear");
-const deleteBtn = document.querySelector(".delete");
 const dotBtn = document.querySelector(".dot");
 const equalBtn = document.querySelector(".equal");
-const operationBtn = document.querySelector(".operation");
+const buttons = document.querySelector(".buttons")
+const clearBtn = document.querySelector(".clear");
+const deleteBtn = document.querySelector(".delete");
 const displayPrimary = document.querySelector(".primary-output");
 const displaySecondary = document.querySelector(".secondary-output");
 
@@ -27,7 +25,27 @@ function calculatorFactory() {
   const getOperation = () => operation;
   const setOperation = (mathOperation) => operation = mathOperation;
 
-  return {getFirstNumber, setFirstNumber, resetNumberOne, getSecondNumber, setSecondNumber, resetNumberTwo, getOperation, setOperation}
+  const operate = (a, b, operation) => {
+    if (operation === "/") return a / b
+    if (operation === "*") return a * b
+    if (operation === "+") return a + b
+    if (operation === "-") return a - b
+  }
+
+  return {getFirstNumber, setFirstNumber, resetNumberOne, getSecondNumber, setSecondNumber, resetNumberTwo, getOperation, setOperation, operate}
+}
+
+
+// jesu li displayPrimary i displaySecondary state??
+function clearPrimaryDisplay() {
+  displayPrimary.textContent = "";
+}
+
+const clearSecondaryDisplay = () => displaySecondary.textContent = "";
+
+function resetAllNumbers() {
+  calculator.resetNumberOne()
+  calculator.resetNumberTwo()
 }
 
 const calculator = calculatorFactory();
@@ -35,46 +53,63 @@ const calculator = calculatorFactory();
 buttons.addEventListener("click", (event) => {
   if (event.target.classList.contains("number") ) {
     calculator.setFirstNumber(event.target.value)
-    displayPrimary.textContent = "";
+    clearPrimaryDisplay()
     displayPrimary.textContent += calculator.getFirstNumber();
   } else if (event.target.classList.contains("operation") && calculator.getFirstNumber() !== "" && calculator.getSecondNumber() === "") {
     calculator.setSecondNumber(calculator.getFirstNumber());
     calculator.resetNumberOne();
     calculator.setOperation(event.target.value)
-    displayPrimary.textContent = "";
+    clearPrimaryDisplay()
     displaySecondary.textContent = `${calculator.getSecondNumber()} ${calculator.getOperation()}`;
   } else if (event.target.classList.contains("operation") && calculator.getSecondNumber() !== "" && calculator.getFirstNumber() !== "") {
-    const result = (eval(`${parseInt(calculator.getSecondNumber())} ${calculator.getOperation()} ${parseInt(calculator.getFirstNumber())}`));
+    console.log(event.target.value)
+    const result = calculator.operate(parseInt(calculator.getSecondNumber()), parseInt(calculator.getFirstNumber()), calculator.getOperation());
     calculator.resetNumberTwo()
     calculator.setSecondNumber(result);
     calculator.resetNumberOne()
     calculator.setOperation(event.target.value)
-    displayPrimary.textContent = "";
+    clearPrimaryDisplay()
     displaySecondary.textContent = `${calculator.getSecondNumber()} ${calculator.getOperation()}`;
   }
 })
 
+
+// napravit funkciju clear
 clearBtn.addEventListener("click", () => {
-  displayPrimary.textContent = "";
-  displaySecondary.textContent = "";
-  // zasto ovo ne radi??
-  // calculator.setFirstNumber("");
-  calculator.resetNumberOne();
-  calculator.resetNumberTwo();
-  // jel trebam ovo?
-  // calculator.setOperation("");
+  clearPrimaryDisplay()
+  clearSecondaryDisplay()
+  // displaySecondary.textContent = "";
+  resetAllNumbers()
+  calculator.setOperation("");
 })
 
 deleteBtn.addEventListener("click", () => {
   // ocu ovo stavit pod if displayPrimary.textContent !== ""
-  let result = calculator.getFirstNumber()
-  calculator.resetNumberOne()
-  calculator.setFirstNumber(result.substring(0, result.length - 1))
-  displayPrimary.textContent = calculator.getFirstNumber()
+  if (displayPrimary.textContent !== "" && displaySecondary.textContent === "" ) {
+    let result = calculator.getFirstNumber()
+    calculator.resetNumberOne()
+    calculator.setFirstNumber(result.substring(0, result.length - 1))
+    displayPrimary.textContent = calculator.getFirstNumber()
+  }
 })
 
-// dotBtn.addEventListener("click", (event) => {
-//   if (!event.target.value in calculator.getFirstNumber() && calculator.getFirstNumber() !== "") {
-//     calculator.setFirstNumber(event.target.value)
-//   }
-// })
+equalBtn.addEventListener("click", () => {
+  if (calculator.getFirstNumber() !== "" && calculator.getSecondNumber() !== "" && calculator.getOperation() !== "") {
+    const result = calculator.operate(parseInt(calculator.getSecondNumber()), parseInt(calculator.getFirstNumber()), calculator.getOperation());
+    clearSecondaryDisplay()
+    displayPrimary.textContent = result;
+  }
+})
+
+dotBtn.addEventListener("click", (event) => {
+  const number = calculator.getFirstNumber()
+  // console.log(number)
+  if (!number.includes(".") && calculator.getFirstNumber() !== "") {
+    // console.log(event.target.value)
+    calculator.setFirstNumber(event.target.value)
+    displayPrimary.textContent = calculator.getFirstNumber();
+    // console.log("first", calculator.getFirstNumber())
+    // console.log("second", calculator.getSecondNumber())
+    // console.log("first", calculator.getFirstNumber())
+  }
+})
