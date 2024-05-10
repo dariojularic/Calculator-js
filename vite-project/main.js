@@ -37,10 +37,11 @@ function calculatorFactory() {
 
 
 // jesu li displayPrimary i displaySecondary state??
+
 function clearPrimaryDisplay() {
   displayPrimary.textContent = "";
 }
-
+// koja je razlika izmedu ove dve funkcije?
 const clearSecondaryDisplay = () => displaySecondary.textContent = "";
 
 function resetAllNumbers() {
@@ -73,12 +74,9 @@ buttons.addEventListener("click", (event) => {
   }
 })
 
-
-// napravit funkciju clear
 clearBtn.addEventListener("click", () => {
   clearPrimaryDisplay()
   clearSecondaryDisplay()
-  // displaySecondary.textContent = "";
   resetAllNumbers()
   calculator.setOperation("");
 })
