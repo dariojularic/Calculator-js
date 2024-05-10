@@ -60,6 +60,17 @@ buttons.addEventListener("click", (event) => {
   }
 })
 
+clearBtn.addEventListener("click", () => {
+  displayPrimary.textContent = "";
+  displaySecondary.textContent = "";
+  // calculator.setFirstNumber();
+  calculator.resetNumberOne();
+  calculator.resetNumberTwo();
+  calculator.setOperation("");
+})
+
+
+
 // dotBtn.addEventListener("click", (event) => {
 //   if (!event.target.value in calculator.getFirstNumber() && calculator.getFirstNumber() !== "") {
 //     calculator.setFirstNumber(event.target.value)
