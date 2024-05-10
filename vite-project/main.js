@@ -28,13 +28,7 @@ function calculatorFactory() {
   const setOperation = (mathOperation) => operation = mathOperation;
 
   return {getFirstNumber, setFirstNumber, resetNumberOne, getSecondNumber, setSecondNumber, resetNumberTwo, getOperation, setOperation}
-  // const setResult = (result, operation, number) => result, operation, number
 }
-
-const addition = (x, y) => x + y;
-const subtraction = (x, y) => x - y;
-const multiplication = (x, y) => x * y;
-const division = (x, y) => x + y;
 
 const calculator = calculatorFactory();
 
@@ -63,13 +57,21 @@ buttons.addEventListener("click", (event) => {
 clearBtn.addEventListener("click", () => {
   displayPrimary.textContent = "";
   displaySecondary.textContent = "";
-  // calculator.setFirstNumber();
+  // zasto ovo ne radi??
+  // calculator.setFirstNumber("");
   calculator.resetNumberOne();
   calculator.resetNumberTwo();
-  calculator.setOperation("");
+  // jel trebam ovo?
+  // calculator.setOperation("");
 })
 
-
+deleteBtn.addEventListener("click", () => {
+  // ocu ovo stavit pod if displayPrimary.textContent !== ""
+  let result = calculator.getFirstNumber()
+  calculator.resetNumberOne()
+  calculator.setFirstNumber(result.substring(0, result.length - 1))
+  displayPrimary.textContent = calculator.getFirstNumber()
+})
 
 // dotBtn.addEventListener("click", (event) => {
 //   if (!event.target.value in calculator.getFirstNumber() && calculator.getFirstNumber() !== "") {
