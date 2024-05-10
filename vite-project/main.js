@@ -65,7 +65,7 @@ buttons.addEventListener("click", (event) => {
     clearPrimaryDisplay()
     displaySecondary.textContent = `${calculator.getSecondNumber()} ${calculator.getOperation()}`;
   } else if (event.target.classList.contains("operation") && calculator.getSecondNumber() !== "" && calculator.getFirstNumber() !== "") {
-    const result = calculator.operate(parseInt(calculator.getSecondNumber()), parseInt(calculator.getFirstNumber()), calculator.getOperation());
+    const result = calculator.operate(parseFloat(calculator.getSecondNumber()), parseFloat(calculator.getFirstNumber()), calculator.getOperation());
     calculator.resetNumberTwo()
     calculator.setSecondNumber(result);
     calculator.resetNumberOne()
@@ -95,7 +95,7 @@ deleteBtn.addEventListener("click", () => {
 
 equalBtn.addEventListener("click", () => {
   if (calculator.getFirstNumber() !== "" && calculator.getSecondNumber() !== "" && calculator.getOperation() !== "") {
-    const result = calculator.operate(parseInt(calculator.getSecondNumber()), parseInt(calculator.getFirstNumber()), calculator.getOperation());
+    const result = calculator.operate(parseFloat(calculator.getSecondNumber()), parseFloat(calculator.getFirstNumber()), calculator.getOperation());
     clearSecondaryDisplay()
     displayPrimary.textContent = result;
   }
