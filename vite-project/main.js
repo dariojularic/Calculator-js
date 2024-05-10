@@ -44,6 +44,8 @@ function clearPrimaryDisplay() {
 // koja je razlika izmedu ove dve funkcije?
 const clearSecondaryDisplay = () => displaySecondary.textContent = "";
 
+// ocu li napravit setPrimaryDisplay i setSecondaryDisplay??
+
 function resetAllNumbers() {
   calculator.resetNumberOne()
   calculator.resetNumberTwo()
@@ -63,7 +65,6 @@ buttons.addEventListener("click", (event) => {
     clearPrimaryDisplay()
     displaySecondary.textContent = `${calculator.getSecondNumber()} ${calculator.getOperation()}`;
   } else if (event.target.classList.contains("operation") && calculator.getSecondNumber() !== "" && calculator.getFirstNumber() !== "") {
-    console.log(event.target.value)
     const result = calculator.operate(parseInt(calculator.getSecondNumber()), parseInt(calculator.getFirstNumber()), calculator.getOperation());
     calculator.resetNumberTwo()
     calculator.setSecondNumber(result);
@@ -83,6 +84,7 @@ clearBtn.addEventListener("click", () => {
 
 deleteBtn.addEventListener("click", () => {
   // ocu ovo stavit pod if displayPrimary.textContent !== ""
+  // promijenit condition
   if (displayPrimary.textContent !== "" && displaySecondary.textContent === "" ) {
     let result = calculator.getFirstNumber()
     calculator.resetNumberOne()
@@ -101,13 +103,8 @@ equalBtn.addEventListener("click", () => {
 
 dotBtn.addEventListener("click", (event) => {
   const number = calculator.getFirstNumber()
-  // console.log(number)
   if (!number.includes(".") && calculator.getFirstNumber() !== "") {
-    // console.log(event.target.value)
     calculator.setFirstNumber(event.target.value)
     displayPrimary.textContent = calculator.getFirstNumber();
-    // console.log("first", calculator.getFirstNumber())
-    // console.log("second", calculator.getSecondNumber())
-    // console.log("first", calculator.getFirstNumber())
   }
 })
