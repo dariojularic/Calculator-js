@@ -35,7 +35,6 @@ function calculatorFactory() {
   return {getFirstNumber, setFirstNumber, resetNumberOne, getSecondNumber, setSecondNumber, resetNumberTwo, getOperation, setOperation, operate}
 }
 
-
 // jesu li displayPrimary i displaySecondary state??
 
 function clearPrimaryDisplay() {
@@ -85,14 +84,16 @@ clearBtn.addEventListener("click", () => {
 deleteBtn.addEventListener("click", () => {
   // ocu ovo stavit pod if displayPrimary.textContent !== ""
   // promijenit condition
-  if (displayPrimary.textContent !== "" && displaySecondary.textContent === "" ) {
+  if (displayPrimary.textContent !== "") {
     let result = calculator.getFirstNumber()
     calculator.resetNumberOne()
     calculator.setFirstNumber(result.substring(0, result.length - 1))
     displayPrimary.textContent = calculator.getFirstNumber()
+    console.log(displayPrimary.textContent)
   }
 })
 
+// first number treba setat na novi broj i njega prikazat nakon =
 equalBtn.addEventListener("click", () => {
   if (calculator.getFirstNumber() !== "" && calculator.getSecondNumber() !== "" && calculator.getOperation() !== "") {
     const result = calculator.operate(parseFloat(calculator.getSecondNumber()), parseFloat(calculator.getFirstNumber()), calculator.getOperation());
