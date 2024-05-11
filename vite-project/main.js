@@ -26,17 +26,19 @@ function calculatorFactory() {
   const setOperation = (mathOperation) => operation = mathOperation;
 
   const operate = (a, b, operation) => {
-    if (operation === "/") return a / b
     if (operation === "*") return a * b
     if (operation === "+") return a + b
     if (operation === "-") return a - b
+    if (operation === "/" && (a === 0 || b === 0)) {
+      alert("You can't divide by zero!")
+      return "";
+    } else {
+      return a / b
+    }
   }
 
   return {getFirstNumber, setFirstNumber, resetNumberOne, getSecondNumber, setSecondNumber, resetNumberTwo, getOperation, setOperation, operate}
 }
-
-// jesu li displayPrimary i displaySecondary state??
-// jel ovo ok? zasto ne mogu zvat .includes na calculator.getFirstNumbe?
 
 function clearPrimaryDisplay() {
   displayPrimary.textContent = "";
@@ -45,7 +47,6 @@ function clearPrimaryDisplay() {
 const clearSecondaryDisplay = () => displaySecondary.textContent = "";
 
 // ocu li napravit setPrimaryDisplay i setSecondaryDisplay??
-
 function resetAllNumbers() {
   calculator.resetNumberOne()
   calculator.resetNumberTwo()
@@ -54,7 +55,9 @@ function resetAllNumbers() {
 const calculator = calculatorFactory();
 
 buttons.addEventListener("click", (event) => {
-  if (event.target.classList.contains("number") ) {
+  // kako ogranicit broj znamenki ?
+  const numberOfNumbers = calculator.getFirstNumber()
+  if (event.target.classList.contains("number") && numberOfNumbers.length < 15) {
     calculator.setFirstNumber(event.target.value)
     clearPrimaryDisplay()
     displayPrimary.textContent += calculator.getFirstNumber();
@@ -66,6 +69,8 @@ buttons.addEventListener("click", (event) => {
     displaySecondary.textContent = `${calculator.getSecondNumber()} ${calculator.getOperation()}`;
   } else if (event.target.classList.contains("operation") && calculator.getSecondNumber() !== "" && calculator.getFirstNumber() !== "") {
     const result = calculator.operate(parseFloat(calculator.getSecondNumber()), parseFloat(calculator.getFirstNumber()), calculator.getOperation());
+    console.log(calculator.getFirstNumber())
+    console.log(calculator.getSecondNumber())
     calculator.resetNumberTwo()
     calculator.setSecondNumber(result);
     calculator.resetNumberOne()
@@ -104,7 +109,7 @@ equalBtn.addEventListener("click", () => {
 })
 
 dotBtn.addEventListener("click", (event) => {
-  // jel ovo ok? zasto ne mogu zvat .includes na calculator.getFirstNumbe?
+  // jel ovo ok? zasto ne mogu zvat .includes("") na calculator.getFirstNumbe?
   const number = calculator.getFirstNumber()
   if (!number.includes(".") && calculator.getFirstNumber() !== "") {
     calculator.setFirstNumber(event.target.value)
