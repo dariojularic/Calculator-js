@@ -103,7 +103,7 @@ equalBtn.addEventListener("click", () => {
     clearSecondaryDisplay()
     resetAllNumbers()
     calculator.setFirstNumber(result)
-    displayPrimary.textContent = calculator.getFirstNumber();
+    displayPrimary.textContent = Number(calculator.getFirstNumber()).toFixed(10);
   }
 })
 
