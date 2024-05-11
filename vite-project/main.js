@@ -93,7 +93,6 @@ deleteBtn.addEventListener("click", () => {
     calculator.resetNumberOne()
     calculator.setFirstNumber(result.substring(0, result.length - 1))
     displayPrimary.textContent = calculator.getFirstNumber()
-    console.log(displayPrimary.textContent)
   }
   if (displayPrimary.textContent === "") calculator.resetNumberOne();
 })
