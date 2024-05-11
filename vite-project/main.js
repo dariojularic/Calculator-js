@@ -36,6 +36,7 @@ function calculatorFactory() {
 }
 
 // jesu li displayPrimary i displaySecondary state??
+// jel ovo ok? zasto ne mogu zvat .includes na calculator.getFirstNumbe?
 
 function clearPrimaryDisplay() {
   displayPrimary.textContent = "";
@@ -82,8 +83,6 @@ clearBtn.addEventListener("click", () => {
 })
 
 deleteBtn.addEventListener("click", () => {
-  // ocu ovo stavit pod if displayPrimary.textContent !== ""
-  // promijenit condition
   if (displayPrimary.textContent !== "") {
     let result = calculator.getFirstNumber()
     calculator.resetNumberOne()
@@ -91,18 +90,21 @@ deleteBtn.addEventListener("click", () => {
     displayPrimary.textContent = calculator.getFirstNumber()
     console.log(displayPrimary.textContent)
   }
+  if (displayPrimary.textContent === "") calculator.resetNumberOne();
 })
 
-// first number treba setat na novi broj i njega prikazat nakon =
 equalBtn.addEventListener("click", () => {
   if (calculator.getFirstNumber() !== "" && calculator.getSecondNumber() !== "" && calculator.getOperation() !== "") {
     const result = calculator.operate(parseFloat(calculator.getSecondNumber()), parseFloat(calculator.getFirstNumber()), calculator.getOperation());
     clearSecondaryDisplay()
-    displayPrimary.textContent = result;
+    resetAllNumbers()
+    calculator.setFirstNumber(result)
+    displayPrimary.textContent = calculator.getFirstNumber();
   }
 })
 
 dotBtn.addEventListener("click", (event) => {
+  // jel ovo ok? zasto ne mogu zvat .includes na calculator.getFirstNumbe?
   const number = calculator.getFirstNumber()
   if (!number.includes(".") && calculator.getFirstNumber() !== "") {
     calculator.setFirstNumber(event.target.value)
