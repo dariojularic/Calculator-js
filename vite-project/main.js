@@ -39,6 +39,9 @@ function calculatorFactory() {
 
   return {getFirstNumber, setFirstNumber, resetNumberOne, getSecondNumber, setSecondNumber, resetNumberTwo, getOperation, setOperation, operate}
 }
+const calculator = calculatorFactory();
+// odavje nadalje je sve isto
+
 
 function clearPrimaryDisplay() {
   displayPrimary.textContent = "";
@@ -52,7 +55,17 @@ function resetAllNumbers() {
   calculator.resetNumberTwo()
 }
 
-const calculator = calculatorFactory();
+
+console.log(calculator)
+const calculator2 = calculatorFactory();
+console.log(calculator2)
+
+
+const array = []
+
+console.log(array)
+
+
 
 buttons.addEventListener("click", (event) => {
   // kako ogranicit broj znamenki ?
