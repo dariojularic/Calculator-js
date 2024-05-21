@@ -41,7 +41,7 @@ function calculatorFactory() {
 }
 const calculator = calculatorFactory();
 // odavje nadalje je sve isto
-// 192 do 198 sve pogledat jonasaa
+// 192 do 198 sve pogledat jonasaaa
 
 function clearPrimaryDisplay() {
   displayPrimary.textContent = "";
