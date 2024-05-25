@@ -55,18 +55,6 @@ function resetAllNumbers() {
   calculator.resetNumberTwo()
 }
 
-
-console.log(calculator)
-const calculator2 = calculatorFactory();
-console.log(calculator2)
-
-
-const array = []
-
-console.log(array)
-
-
-
 buttons.addEventListener("click", (event) => {
   // kako ogranicit broj znamenki ?
   const numberOfNumbers = calculator.getFirstNumber()
@@ -116,7 +104,8 @@ equalBtn.addEventListener("click", () => {
     clearSecondaryDisplay()
     resetAllNumbers()
     calculator.setFirstNumber(result)
-    displayPrimary.textContent = Number(calculator.getFirstNumber()).toFixed(10);
+    // displayPrimary.textContent = Number(calculator.getFirstNumber()).toFixed(10);
+    displayPrimary.textContent = calculator.getFirstNumber().includes(".") ? Number(calculator.getFirstNumber()).toFixed(2) : Number(calculator.getFirstNumber())
   }
 })
 
